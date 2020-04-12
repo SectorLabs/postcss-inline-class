@@ -1,0 +1,4 @@
+.b {
+    @inline .a from './dummy.css';
+    font-size: 14px;
+}

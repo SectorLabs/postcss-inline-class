@@ -1,0 +1,11 @@
+.a {
+    color: red;
+}
+
+.a, .b {
+    font-size: 14px
+}
+
+.c {
+    @inline .a;
+}

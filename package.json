@@ -1,0 +1,62 @@
+{
+  "name": "postcss-inline-class",
+  "version": "0.0.1",
+  "description": "Inline the declarations of other CSS classes in your CSS classes.",
+  "main": "index.js",
+  "repository": "https://github.com/alexandrukis/postcss-inline-class",
+  "author": "Sector Labs <open-source@sectorlabs.ro>",
+  "license": "MIT",
+  "keywords": [
+    "css",
+    "postcss",
+    "postcss-plugin",
+    "import",
+    "inline",
+    "mixin",
+    "class"
+  ],
+  "files": [
+    "index.js"
+  ],
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {
+    "postcss": "^7.0.1",
+    "resolve": "^1.1.7",
+    "lodash": "latest"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-i-am-meticulous": "^12.0.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-prettier": "^3.1.2",
+    "postcss-tape": "^5.0.2",
+    "prettier": "^2.0.4"
+  },
+  "scripts": {
+    "ci": "eslint . && postcss-tape",
+    "fix": "eslint . --fix --ignore-pattern '!.tape.js'",
+    "lint": "eslint .",
+    "test": "postcss-tape --plugin ./index.js"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-i-am-meticulous",
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "printWidth": 100,
+          "singleQuote": true,
+          "semi": true,
+          "tabWidth": 4,
+          "trailingComma": "all",
+          "useTabs": false
+        }
+      ]
+    }
+  }
+}

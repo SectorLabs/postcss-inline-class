@@ -1,0 +1,12 @@
+.a {
+    color: red;
+}
+
+.a, .b {
+    font-size: 14px
+}
+
+.c {
+    color: red;
+    font-size: 14px;
+}
