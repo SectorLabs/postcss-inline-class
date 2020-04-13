@@ -17,16 +17,19 @@ const processAtRule = (onError, atRule, root, targetClass, importPath) => {
     if (matchedDeclarations.length === 0 && nestedRules.length === 0) {
         if (importPath) {
             onError(`Could not find class '${targetClass}' in file '${importPath}'`);
+            return [];
         } else {
             onError(`Could not find class '${targetClass}'`);
+            return [];
         }
     }
 
     nestedRules.forEach((nestedRule) => {
-        nestedRule.selectors = nestedRule.selectors.map((selector) =>
-            replaceClassName(selector, targetClass, atRule.parent.selector),
+        nestedRule.selector = replaceClassName(
+            nestedRule.selector,
+            targetClass,
+            atRule.parent.selector,
         );
-        root.append(nestedRule);
     });
 
     mediaQueries.forEach((mediaQuery) => {
@@ -36,21 +39,23 @@ const processAtRule = (onError, atRule, root, targetClass, importPath) => {
                     replaceClassName(selector, targetClass, atRule.parent.selector),
                 )),
         );
-
-        root.append(mediaQuery);
     });
 
     atRule.replaceWith(matchedDeclarations);
+    return [...nestedRules, ...mediaQueries];
 };
 
 const walkAtRule = (root, result, promises) => (atRule) => {
     const params = postcss.list.space(atRule.params);
     const targetClass = params[0];
 
-    const onError = (message) => atRule.warn(result, message);
+    const onError = (message) => {
+        atRule.warn(result, message);
+        atRule.remove();
+    };
 
     if (params.length === 1) {
-        processAtRule(onError, atRule, root, targetClass);
+        promises.push(Promise.resolve(processAtRule(onError, atRule, root, targetClass)));
         return;
     }
 
@@ -61,11 +66,11 @@ const walkAtRule = (root, result, promises) => (atRule) => {
         readFile(resolvedPath)
             .then((rawData) => {
                 const importedRoot = postcss.parse(rawData);
-                processAtRule(onError, atRule, importedRoot, targetClass, importPath);
+                return processAtRule(onError, atRule, importedRoot, targetClass, importPath);
             })
             .catch(() => {
                 onError(`Could not find file '${importPath}'`);
-                atRule.remove();
+                return [];
             }),
     );
 };
@@ -77,7 +82,12 @@ const processFile = (root, result) => (resolve) => {
 
     root.walkRules((rule) => rule.walkAtRules('inline', atRuleWalker));
 
-    return Promise.all(promises).then(resolve).catch(resolve);
+    return Promise.all(promises)
+        .then((newNodes) => {
+            root.append(...newNodes);
+            return resolve();
+        })
+        .catch(resolve);
 };
 
 module.exports = postcss.plugin('postcss-inline-class', () => (root, result) =>

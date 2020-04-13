@@ -4,16 +4,18 @@ const findNestedRules = (root, targetSelector) => {
     const nestedMatches = [];
 
     root.walkRules((rule) => {
-        if (rule.selectors.includes(targetSelector) && rule.parent.type === 'root') {
+        if (rule.parent.type !== 'root') {
             return;
         }
 
-        const isNestedRule =
-            rule.selectors.find((selector) => selector.includes(targetSelector)) &&
-            rule.parent.type === 'root';
+        if (rule.selectors.includes(targetSelector)) {
+            return;
+        }
+
+        const isNestedRule = rule.selectors.find((selector) => selector.includes(targetSelector));
 
         if (isNestedRule) {
-            nestedMatches.push(rule);
+            nestedMatches.push(rule.clone());
         }
     });
 
