@@ -8,9 +8,9 @@ const findNestedRules = (root, targetSelector) => {
             return;
         }
 
-        const isNestedRule = rule.selectors.find((selector) =>
-            selector.split(' ').includes(targetSelector),
-        );
+        const isNestedRule =
+            rule.selectors.find((selector) => selector.includes(targetSelector)) &&
+            rule.parent.type === 'root';
 
         if (isNestedRule) {
             nestedMatches.push(rule);

@@ -1,0 +1,19 @@
+.foo + div.a {
+    color: red;
+}
+
+html[dir='rtl'] .a {
+    display: block;
+}
+
+.b {
+    font-size: 14px;
+}
+
+.foo + div.b {
+    color: red;
+}
+
+html[dir='rtl'] .b {
+    display: block;
+}

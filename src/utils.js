@@ -5,8 +5,8 @@ module.exports.parseImportPath = (path) => {
     return matches[1];
 };
 
-module.exports.readFile = (file) => {
-    return new Promise((resolve, reject) => {
+module.exports.readFile = (file) =>
+    new Promise((resolve, reject) => {
         fs.readFile(file, 'utf-8', (err, contents) => {
             if (err) {
                 return reject(err);
@@ -14,4 +14,17 @@ module.exports.readFile = (file) => {
             return resolve(contents);
         });
     });
-};
+
+module.exports.replaceClassName = (from, oldClassName, newClassName) =>
+    from
+        .split(' ')
+        .map((group) =>
+            group
+                .split('.')
+                .map((className) =>
+                    className === oldClassName.slice(1) ? newClassName.slice(1) : className,
+                )
+                .join('.'),
+        )
+        .map((className) => (className === oldClassName ? newClassName : className))
+        .join(' ');

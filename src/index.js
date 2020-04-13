@@ -4,12 +4,15 @@ const postcss = require('postcss');
 
 const readFile = require('./utils').readFile;
 const parseImportPath = require('./utils').parseImportPath;
+const replaceClassName = require('./utils').replaceClassName;
 const findInlineDeclarations = require('./findInlineDeclarations');
 const findNestedRules = require('./findNestedRules');
+const findMediaQueries = require('./findMediaQueries');
 
 const processAtRule = (onError, atRule, root, targetClass, importPath) => {
     const matchedDeclarations = findInlineDeclarations(root, targetClass);
     const nestedRules = findNestedRules(root, targetClass);
+    const mediaQueries = findMediaQueries(root, targetClass);
 
     if (matchedDeclarations.length === 0 && nestedRules.length === 0) {
         if (importPath) {
@@ -21,12 +24,20 @@ const processAtRule = (onError, atRule, root, targetClass, importPath) => {
 
     nestedRules.forEach((nestedRule) => {
         nestedRule.selectors = nestedRule.selectors.map((selector) =>
-            postcss.list
-                .space(selector)
-                .map((className) => (className === targetClass ? atRule.parent.selector : className))
-                .join(' '),
+            replaceClassName(selector, targetClass, atRule.parent.selector),
         );
         root.append(nestedRule);
+    });
+
+    mediaQueries.forEach((mediaQuery) => {
+        mediaQuery.nodes.forEach(
+            (node) =>
+                (node.selectors = node.selectors.map((selector) =>
+                    replaceClassName(selector, targetClass, atRule.parent.selector),
+                )),
+        );
+
+        root.append(mediaQuery);
     });
 
     atRule.replaceWith(matchedDeclarations);

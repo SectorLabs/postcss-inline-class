@@ -1,0 +1,43 @@
+.a {
+    color: red;
+}
+
+@media (min-width: 240px) {
+    .a {
+        color: green;
+    }
+}
+
+@media (min-width: 3600px) {
+    .a {
+        color: blue;
+    }
+
+    .d {
+        display: block;
+    }
+}
+
+
+@media (min-width: 1080px) {
+    .d {
+        color: red;
+    }
+}
+
+.b {
+    color: red;
+    font-size: 14px;
+}
+
+@media (min-width: 240px) {
+    .b {
+        color: green;
+    }
+}
+
+@media (min-width: 3600px) {
+    .b {
+        color: blue;
+    }
+}

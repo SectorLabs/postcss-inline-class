@@ -1,0 +1,23 @@
+.a {
+    color: red;
+}
+
+.b.a {
+    color: blue;
+}
+
+div.a {
+    color: blue;
+}
+
+.c {
+    color: red;
+}
+
+.b.c {
+    color: blue;
+}
+
+div.c {
+    color: blue;
+}

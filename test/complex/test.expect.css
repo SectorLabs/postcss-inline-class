@@ -1,0 +1,60 @@
+.parent {
+    color: beige;
+}
+
+@media (max-width: 360px) {
+    body .parent {
+        color: azure;
+    }
+}
+
+@media (max-width: 480px) {
+    .i-like-turtles > .parent {
+        color: rebeccapurple;
+    }
+
+    .i-like-turtles {
+        color: darkolivegreen;
+    }
+
+    .i-like-turtles + div.parent {
+        color: firebrick;
+    }
+}
+
+body .i-like-turtles .parent {
+    color: red;
+}
+
+body .i-like-turtles.parent {
+    caret-color: blanchedalmond;
+}
+
+.child {
+    color: beige;
+    font-size: 14px;
+}
+
+body .i-like-turtles .child {
+    color: red;
+}
+
+body .i-like-turtles.child {
+    caret-color: blanchedalmond;
+}
+
+@media (max-width: 360px) {
+    body .child {
+        color: azure;
+    }
+}
+
+@media (max-width: 480px) {
+    .i-like-turtles > .child {
+        color: rebeccapurple;
+    }
+
+    .i-like-turtles + div.child {
+        color: firebrick;
+    }
+}

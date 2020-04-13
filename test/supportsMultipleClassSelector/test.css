@@ -1,0 +1,15 @@
+.a {
+    color: red;
+}
+
+.b.a {
+    color: blue;
+}
+
+div.a {
+    color: blue;
+}
+
+.c {
+    @inline .a;
+}

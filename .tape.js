@@ -26,10 +26,19 @@ module.exports = {
             text: "Could not find file './dummy.css'",
         },
     },
-    'supportsCustomParents/test': {
-        message: 'removes statements if non-existent files are provided',
+    'doesNotOverwriteOverlappingNames/test': {
+        message: 'does not overwrite overlapping names',
     },
-    // 'supportsMediaQueries/test': {
-    //     message: 'removes statements if non-existent files are provided',
-    // },
+    'supportsMediaQueries/test': {
+        message: 'supportes media queries',
+    },
+    'supportsCombinatorSelectors/test': {
+        message: 'supports combinator selectors',
+    },
+    'supportsMultipleClassSelector/test': {
+        message: 'supports multiple class selectors',
+    },
+    'complex/test': {
+        message: 'all combined',
+    },
 };

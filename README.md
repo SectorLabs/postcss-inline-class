@@ -16,9 +16,7 @@ Inline CSS classes in other CSS classes using postcss.
     font-size: 14px;
 }
 ```
-
 becomes
-
 ```css
 .a {
     color: red;
@@ -45,9 +43,7 @@ becomes
     @inline .a;
 }
 ```
-
 becomes
-
 ```css
 .a {
     color: red;
@@ -79,10 +75,7 @@ becomes
     font-size: 14px;
 }
 ```
-
 becomes
-
-
 ```css
 /* foo.css */
 
@@ -95,5 +88,74 @@ becomes
 .b {
     color: red;
     font-size: 14px;
+}
+```
+
+### Nested
+
+```css
+.foo + div.a {
+    color: red;
+}
+
+.b {
+    @inline .a;
+    font-size: 14px;
+}
+```
+becomes 
+```css
+.foo + div.a {
+    color: red;
+}
+
+.b {
+    font-size: 14px;
+}
+
+.foo + div.b {
+    color: red;
+}
+```
+
+### Media queries
+
+```css
+.a {
+    color: red;
+}
+
+@media (min-width: 240px) {
+    .a {
+        color: green;
+    }
+}
+
+.b {
+    @inline .a;
+    font-size: 14px;
+}
+```
+becomes
+```css
+.a {
+    color: red;
+}
+
+@media (min-width: 240px) {
+    .a {
+        color: green;
+    }
+}
+
+.b {
+    color: red;
+    font-size: 14px;
+}
+
+@media (min-width: 240px) {
+    .b {
+        color: green;
+    }
 }
 ```

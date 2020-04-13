@@ -1,0 +1,12 @@
+.foo + div.a {
+    color: red;
+}
+
+html[dir='rtl'] .a {
+    display: block;
+}
+
+.b {
+    @inline .a;
+    font-size: 14px;
+}
