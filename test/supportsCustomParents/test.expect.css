@@ -1,0 +1,16 @@
+.ba {
+    color: red;
+}
+
+.bad .ba {
+    color: blue;
+}
+
+.b {
+    color: red;
+    font-size: 14px;
+}
+
+.bad .b {
+    color: blue;
+}

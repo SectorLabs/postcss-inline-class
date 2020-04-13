@@ -1,0 +1,12 @@
+.ba {
+    color: red;
+}
+
+.bad .ba {
+    color: blue;
+}
+
+.b {
+    @inline .ba;
+    font-size: 14px;
+}

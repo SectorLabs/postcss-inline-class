@@ -1,9 +1,9 @@
 {
-  "name": "postcss-inline-class",
-  "version": "0.0.1",
+  "name": "@sector-labs/postcss-inline-class",
+  "version": "0.0.2",
   "description": "Inline the declarations of other CSS classes in your CSS classes.",
-  "main": "index.js",
-  "repository": "https://github.com/alexandrukis/postcss-inline-class",
+  "main": "src/index.js",
+  "repository": "https://github.com/sectorlabs/postcss-inline-class",
   "author": "Sector Labs <open-source@sectorlabs.ro>",
   "license": "MIT",
   "keywords": [
@@ -16,7 +16,7 @@
     "class"
   ],
   "files": [
-    "index.js"
+    "src/*"
   ],
   "engines": {
     "node": ">=6.0.0"
@@ -38,7 +38,7 @@
     "ci": "eslint . && postcss-tape",
     "fix": "eslint . --fix --ignore-pattern '!.tape.js'",
     "lint": "eslint .",
-    "test": "postcss-tape --plugin ./index.js"
+    "test": "postcss-tape --plugin src/index.js"
   },
   "eslintConfig": {
     "extends": "eslint-config-i-am-meticulous",

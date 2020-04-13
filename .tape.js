@@ -26,4 +26,10 @@ module.exports = {
             text: "Could not find file './dummy.css'",
         },
     },
+    'supportsCustomParents/test': {
+        message: 'removes statements if non-existent files are provided',
+    },
+    // 'supportsMediaQueries/test': {
+    //     message: 'removes statements if non-existent files are provided',
+    // },
 };
