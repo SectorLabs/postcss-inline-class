@@ -1,0 +1,7 @@
+.b {
+    @inline .a from 'bar.css';
+}
+
+.c {
+    @inline .a from 'dir/foo.css';
+}

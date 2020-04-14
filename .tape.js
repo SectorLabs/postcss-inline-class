@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
     'basic/test': {
         message: 'can inline rules from same file',
@@ -40,5 +42,14 @@ module.exports = {
     },
     'complex/test': {
         message: 'all combined',
+    },
+    'resolvesFiles/test': {
+        message: 'knows how to resolve files',
+        options: {
+            paths: [
+                path.join(process.cwd(), '/test/resolvesFiles/some/other/path'),
+                path.join(process.cwd(), '/test/resolvesFiles/weird'),
+            ],
+        },
     },
 };
