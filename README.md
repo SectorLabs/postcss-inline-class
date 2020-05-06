@@ -1,6 +1,37 @@
 # postcss-inline-class
 
-Inline CSS classes in other CSS classes using postcss.
+A webpack plugin to inline CSS classes in other CSS classes using postcss.
+
+## Installation
+
+```
+yarn add -D @sector-labs/postcss-inline-class
+```
+
+## Usage
+
+Just add `postcss-inline-class` in the list of the webpack plugins
+
+```js
+plugins: [
+    require('@sector-labs/postcss-inline-class')(),
+]
+```
+
+## Resolving files
+
+`postcss-inline-class` uses [resolve](https://github.com/browserify/resolve) under the hood to support file resolving.
+
+```js
+plugins: [
+    require('@sector-labs/postcss-inline-class')({
+        paths: [
+            path.join(process.cwd(), '/theme/dark'),
+            path.join(process.cwd(), '/theme/default'),
+        ],
+    }),
+],
+```
 
 ## Examples
 
