@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/SectorLabs/postcss-inline-class/tree/master.svg?style=svg)](https://circleci.com/gh/SectorLabs/postcss-inline-class/tree/master)
+
 # postcss-inline-class
 
 A webpack plugin to inline CSS classes in other CSS classes using postcss.
