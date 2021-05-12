@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "lodash": "latest",
-    "postcss": "^7.0.1",
+    "postcss": "^8.2.10",
     "resolve": "^1.1.7"
   },
   "devDependencies": {
