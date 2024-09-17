@@ -15,7 +15,7 @@ const resolveFile = (filePath, options) =>
         resolvePath(filePath, options, (err, path) => (err ? reject(err) : resolve(path)));
     });
 
-const processAtRule = (onError, atRule, root, targetClass, importPath) => {
+const processAtRule = (onError, atRule, root, targetClass, importPath, resolvedPath, result) => {
     const matchedDeclarations = findInlineDeclarations(root, targetClass);
     const nestedRules = findNestedRules(root, targetClass);
     const mediaQueries = findMediaQueries(root, targetClass);
@@ -48,6 +48,15 @@ const processAtRule = (onError, atRule, root, targetClass, importPath) => {
     });
 
     atRule.replaceWith(matchedDeclarations);
+    if (resolvedPath !== null) {
+        result.messages.push({
+            type: 'dependency',
+            plugin: 'postcss-inline-class',
+            file: resolvedPath,
+            parent: result.opts.from,
+        });
+    }
+
     return [...nestedRules, ...mediaQueries];
 };
 
@@ -61,7 +70,9 @@ const walkAtRule = (root, result, promises, resolve) => (atRule) => {
     };
 
     if (params.length === 1) {
-        promises.push(Promise.resolve(processAtRule(onError, atRule, root, targetClass)));
+        promises.push(
+            Promise.resolve(processAtRule(onError, atRule, root, targetClass, null, null, result)),
+        );
         return;
     }
 
@@ -71,7 +82,15 @@ const walkAtRule = (root, result, promises, resolve) => (atRule) => {
             .then((resolvedPath) =>
                 readFile(resolvedPath).then((rawData) => {
                     const importedRoot = postcss.parse(rawData);
-                    return processAtRule(onError, atRule, importedRoot, targetClass, importPath);
+                    return processAtRule(
+                        onError,
+                        atRule,
+                        importedRoot,
+                        targetClass,
+                        importPath,
+                        resolvedPath,
+                        result,
+                    );
                 }),
             )
             .catch(() => {
