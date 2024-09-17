@@ -1,6 +1,6 @@
 {
   "name": "@sector-labs/postcss-inline-class",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Inline the declarations of other CSS classes in your CSS classes.",
   "main": "src/index.js",
   "repository": "https://github.com/sectorlabs/postcss-inline-class",
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "lodash": "latest",
-    "postcss": "^7.0.1",
+    "postcss": "^8.0.0",
     "resolve": "^1.1.7"
   },
   "devDependencies": {
