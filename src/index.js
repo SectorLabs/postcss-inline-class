@@ -125,7 +125,14 @@ const defaultOptions = Object.freeze({
     extensions: [''],
 });
 
-module.exports = postcss.plugin('postcss-inline-class', (options) => {
-    return (root, result) =>
-        new Promise(processFile(root, result, (options || defaultOptions).paths));
-});
+const plugin = (options) => {
+    return {
+        postcssPlugin: 'postcss-inline-class',
+        Once(root, { result }) {
+            return new Promise(processFile(root, result, (options || defaultOptions).paths));
+        },
+    };
+};
+plugin.postcss = true;
+
+module.exports = plugin;

@@ -1229,10 +1229,10 @@ possible-typed-array-names@^1.0.0:
   resolved "https://registry.yarnpkg.com/possible-typed-array-names/-/possible-typed-array-names-1.0.0.tgz#89bb63c6fada2c3e90adc4a647beeeb39cc7bf8f"
   integrity sha512-d7Uw+eZoloe0EHDIYoe+bQ5WXnGMOpmiZFTuMWCwpjzzkL2nTjcKiAk4hh8TjnGye2TwWOk3UXucZ+3rbmBa8Q==
 
-postcss-tape@^5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/postcss-tape/-/postcss-tape-5.0.2.tgz#7ae011050954fdc10b17d1f1551c9d9bf14e4bdf"
-  integrity sha512-e4770WnsUzczQp/pAIsz0s0MDLAQ7luyh1/hs8QBcdfXOMrz0siEqYNHAKJIoCvGtLoi2QUjWASvTbPfyTfIWg==
+postcss-tape@^6.0.0:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/postcss-tape/-/postcss-tape-6.0.1.tgz#c81bd77c79c7a9a9a559b6af04a02e4487eb467a"
+  integrity sha512-qw/1YCSoGgmz8DC/8lbUo3OZGN0UWWZdThAvCSOIJrK346Weu8bM+aC5c9q1/Np2YjCJfRqhJO+P94A3sLdWhQ==
 
 postcss@^8.0.0:
   version "8.4.47"
