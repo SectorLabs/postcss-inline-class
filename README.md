@@ -2,7 +2,7 @@
 
 # postcss-inline-class
 
-A webpack plugin to inline CSS classes in other CSS classes using postcss.
+A PostCSS plugin to inline CSS classes in other CSS classes using PostCSS.
 
 ## Installation
 
@@ -12,7 +12,7 @@ yarn add -D @sector-labs/postcss-inline-class
 
 ## Usage
 
-Just add `postcss-inline-class` in the list of the webpack plugins
+Just add `postcss-inline-class` in the list of the PostCSS plugins
 
 ```js
 plugins: [
