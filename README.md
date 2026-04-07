@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/SectorLabs/postcss-inline-class/tree/master.svg?style=svg)](https://circleci.com/gh/SectorLabs/postcss-inline-class/tree/master)
+[![verify](https://github.com/SectorLabs/postcss-inline-class/actions/workflows/verify.yml/badge.svg)](https://github.com/SectorLabs/postcss-inline-class/actions/workflows/verify.yml)
 
 # postcss-inline-class
 
